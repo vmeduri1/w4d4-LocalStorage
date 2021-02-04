@@ -11,9 +11,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    if (input.value > 0) {
-      storeItem();
-    }
+    storeItem();
+    localStorage.removeItem(event.target.id);
   });
   const storeItem = () => {
     localStorage.setItem(`${select.value}`, input.value);
