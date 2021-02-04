@@ -1,36 +1,31 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-  event.preventDefault()
-  // const showCart = () => {
 
-  // };
   const select = document.getElementById("items");
   console.log(select);
   console.log(select.value);
-  const input = document.getElementById('')
+  const input = document.getElementById('quantity');
   // const quality = document.
 
-  const form = document.querySelector("form ");
-  const appleValue = localStorage.getItem('apple');
-  // const bananaValue = localStorage.getItem('Banana');
-  // const appleValue = localStorage.getItem('Cookie');
-  // const appleValue = localStorage.getItem('Donut');
-  // const appleValue = localStorage.getItem('Eggs');
-  // const appleValue = localStorage.getItem('Falafel');
-  // const appleValue = localStorage.getItem('Granola Bar');
-  // const appleValue = localStorage.getItem('Hot Dog');
-  // const appleValue = localStorage.getItem('Ice Cream Pint');
-  // const appleValue = localStorage.getItem('Jalepeno');
-
+  const form = document.querySelector("form");
   console.log(form);
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    localStorage.setItems(`${select.value}`, select.value);
 
+  form.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (input.value > 0) {
+      storeItem();
+    }
   });
   const storeItem = () => {
-
+    localStorage.setItem(`${select.value}`, input.value);
   };
-  storeItem();
+
+  const showCart = () => {
+    for (let keys in localStorage) {
+      console.log(keys);
+    }
+    // localStorage.getItem()
+  };
+  showCart();
   // const removeItem = () => {
 
   // };
