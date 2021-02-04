@@ -1,13 +1,13 @@
 window.addEventListener("DOMContentLoaded", (event) => {
 
   const select = document.getElementById("items");
-  console.log(select);
-  console.log(select.value);
+  // console.log(select);
+  // console.log(select.value);
   const input = document.getElementById('quantity');
   // const quality = document.
 
   const form = document.querySelector("form");
-  console.log(form);
+  // console.log(form);
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -17,32 +17,28 @@ window.addEventListener("DOMContentLoaded", (event) => {
   });
   const storeItem = () => {
     localStorage.setItem(`${select.value}`, input.value);
+    showCart();
   };
 
-  // const showCart = () => {
+  const showCart = () => {
+    const cart = document.getElementById("shopping-cart");
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      const value = localStorage.getItem(key);
+      const basketItem = document.createElement('div');
+      basketItem.innerHTML = key + ": " + value;
+      basketItem.setAttribute("id", key);
+      cart.appendChild(basketItem);
+    }
+  };
 
-  // };
   // showCart();
 
 console.log(localStorage);
 
-const div = document.getElementById('shopping-cart');
-const li = document.createElement('li');
-const h2 = document.getElementsByTagName('h2');
-form.addEventListener('submit', event => {
-  console.log(li);
-console.log(div)
-li.setAttribute('id', 'li');
-document.body.appendChild('li')
-})
 
-
-for(let key in localStorage) {
-  console.log(key, localStorage[key])
-  li.innerHTML = `${key}: ${localStorage[key]}`
-}
-  // const removeItem = () => {
-
-  // };
+  const removeItem = () => {
+    showCart();
+  };
 
 });
