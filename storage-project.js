@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   const form = document.querySelector("form");
   console.log(form);
 
-  form.addEventListener("click", (event) => {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
     if (input.value > 0) {
       storeItem();
@@ -19,13 +19,28 @@ window.addEventListener("DOMContentLoaded", (event) => {
     localStorage.setItem(`${select.value}`, input.value);
   };
 
-  const showCart = () => {
-    for (let keys in localStorage) {
-      console.log(keys);
-    }
-    // localStorage.getItem()
-  };
-  showCart();
+  // const showCart = () => {
+
+  // };
+  // showCart();
+
+console.log(localStorage);
+
+const div = document.getElementById('shopping-cart');
+const li = document.createElement('li');
+const h2 = document.getElementsByTagName('h2');
+form.addEventListener('submit', event => {
+  console.log(li);
+console.log(div)
+li.setAttribute('id', 'li');
+document.body.appendChild('li')
+})
+
+
+for(let key in localStorage) {
+  console.log(key, localStorage[key])
+  li.innerHTML = `${key}: ${localStorage[key]}`
+}
   // const removeItem = () => {
 
   // };
