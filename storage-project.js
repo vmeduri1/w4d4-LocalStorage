@@ -1,25 +1,18 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-  event.preventDefault();
-  const select = document.getElementById("items");
-  // console.log(select);
-  // console.log(select.value);
-  const input = document.getElementById('quantity');
-  // const quality = document.
 
-  const form = document.querySelector("form");
-  // console.log(form);
-
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    showCart();
-    storeItem();
-
-  });
   const storeItem = () => {
-    localStorage.setItem(`${select.value}`, input.value);
-    // showCart();
+    const addCart = document.getElementById("add-to-cart");
+    addCart.addEventListener("click", (event) => {
+      const select = document.getElementById("items").value;
+      const input = document.getElementById('quantity').value;
+      if(input !== '') {
+        localStorage.setItem(select, input)
+      }
+      // localStorage.setItem(select, input)
+    });
+    showCart();
   };
+
 
   const showCart = () => {
     const cart = document.getElementById("shopping-cart");
@@ -33,22 +26,25 @@ window.addEventListener("DOMContentLoaded", (event) => {
       //Remove Button
       const button = document.createElement('button');
       button.innerHTML = 'Remove';
+      button.setAttribute('class', 'Remove')
       basketItem.appendChild(button);
 
     }
   };
 
 
-
-
-
-
-
   const removeItem = () => {
-    Storage.removeItem(key)
-    button.addEventListener('click', (event) => {
-      removeItem()
-    })
+   const removeButtons = document.querySelectorAll('.Remove');
+   removeButtons.forEach(function(button) {
+     button.addEventListener('click', (event) => {
+       const parentID = event.target.parentNode.id;
+       localStorage.removeItem(parentID);
+       location.reload();
+       showCart();
+     });
+   });
   };
 
+  storeItem();
+  removeItem();
 });
