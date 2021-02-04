@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-
+  event.preventDefault();
   const select = document.getElementById("items");
   // console.log(select);
   // console.log(select.value);
@@ -11,13 +11,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    if (input.value > 0) {
-      storeItem();
-    }
+
+    showCart();
+    storeItem();
+
   });
   const storeItem = () => {
     localStorage.setItem(`${select.value}`, input.value);
-    showCart();
+    // showCart();
   };
 
   const showCart = () => {
@@ -29,16 +30,25 @@ window.addEventListener("DOMContentLoaded", (event) => {
       basketItem.innerHTML = key + ": " + value;
       basketItem.setAttribute("id", key);
       cart.appendChild(basketItem);
+      //Remove Button
+      const button = document.createElement('button');
+      button.innerHTML = 'Remove';
+      basketItem.appendChild(button);
+
     }
   };
 
-  // showCart();
 
-console.log(localStorage);
+
+
+
 
 
   const removeItem = () => {
-    showCart();
+    Storage.removeItem(key)
+    button.addEventListener('click', (event) => {
+      removeItem()
+    })
   };
 
 });
